@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.cg.appointment.controller"},{"l":"com.cg.appointment.entities"},{"l":"com.cg.appointment.exceptions"},{"l":"com.cg.appointment.repositories"},{"l":"com.cg.appointment.services"},{"l":"com.example.demo"}];updateSearchResults();

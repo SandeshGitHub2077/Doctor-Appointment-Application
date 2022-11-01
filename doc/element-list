@@ -1,0 +1,7 @@
+com.cg.appointment
+com.cg.appointment.controller
+com.cg.appointment.entities
+com.cg.appointment.exceptions
+com.cg.appointment.repositories
+com.cg.appointment.services
+com.example.demo
