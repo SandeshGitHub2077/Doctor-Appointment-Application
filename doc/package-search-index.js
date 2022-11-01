@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.cg.patientconsumer"},{"l":"com.cg.patientconsumer.constants"},{"l":"com.cg.patientconsumer.controllers"},{"l":"com.cg.patientconsumer.dtos"},{"l":"com.cg.patientconsumer.exceptions"}];updateSearchResults();
