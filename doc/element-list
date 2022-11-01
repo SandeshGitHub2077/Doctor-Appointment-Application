@@ -1,6 +1,5 @@
-com.cg.feedback
-com.cg.feedback.controller
-com.cg.feedback.entites
-com.cg.feedback.exceptions
-com.cg.feedback.repositories
-com.cg.feedback.services
+com.cg.login
+com.cg.login.entities
+com.cg.login.repositories
+com.cg.login.services
+com.cg.login.webconfig
