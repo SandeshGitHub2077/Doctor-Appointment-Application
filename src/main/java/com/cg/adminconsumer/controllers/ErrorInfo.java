@@ -1,11 +1,10 @@
-package com.cg.admindata.controllers;
-
+package com.cg.adminconsumer.controllers;
 /**
  * 
  * @author Amburi Alekhya
  *
  */
-public class ResponseInfo {
+public class ErrorInfo {
 	/**
 	 * HTTP status code of the response info object
 	 */
@@ -15,9 +14,9 @@ public class ResponseInfo {
 	 */
 	private String httpStatus;
 	/**
-	 * Message of the response info object
+	 * Error Message of the response info object
 	 */
-	private String message;
+	private String error;
 	/**
 	 * End point of the request
 	 */
@@ -26,7 +25,7 @@ public class ResponseInfo {
 	/**
 	 * Default constructor for initializing default values.
 	 */
-	public ResponseInfo() {
+	public ErrorInfo() {
 		super();
 	}
 
@@ -34,14 +33,14 @@ public class ResponseInfo {
 	 * 
 	 * @param httpCode   HTTP status code of the response info object
 	 * @param httpStatus HTTP status name of the response info object
-	 * @param message    Message of the response info object
+	 * @param error      Error Message of the response info object
 	 * @param path       End point of the request
 	 */
-	public ResponseInfo(int httpCode, String httpStatus, String message, String path) {
+	public ErrorInfo(int httpCode, String httpStatus, String error, String path) {
 		super();
 		this.httpCode = httpCode;
 		this.httpStatus = httpStatus;
-		this.message = message;
+		this.error = error;
 		this.path = path;
 	}
 
@@ -82,21 +81,21 @@ public class ResponseInfo {
 	}
 
 	/**
-	 * Getter method for message
+	 * Getter method for error
 	 * 
-	 * @return Message of the response info object
+	 * @return Error Message of the response info object
 	 */
-	public String getMessage() {
-		return message;
+	public String getError() {
+		return error;
 	}
 
 	/**
-	 * Setter method for message
+	 * Setter method for error
 	 * 
-	 * @param message Message of the response info object
+	 * @param error Error Message of the response info object
 	 */
-	public void setMessage(String message) {
-		this.message = message;
+	public void setError(String error) {
+		this.error = error;
 	}
 
 	/**
@@ -122,8 +121,8 @@ public class ResponseInfo {
 	 */
 	@Override
 	public String toString() {
-		return "ResponseInfo [httpCode=" + httpCode + ", httpStatus=" + httpStatus + ", message=" + message + ", path="
-				+ path + "]";
+		return "ErrorInfo [httpCode=" + httpCode + ", httpStatus=" + httpStatus + ", error=" + error + ", path=" + path
+				+ "]";
 	}
 
 }
