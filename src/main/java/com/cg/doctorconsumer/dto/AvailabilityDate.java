@@ -1,44 +1,23 @@
-package com.cg.doctor.entities;
+package com.cg.doctorconsumer.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.lang.NonNull;
-
-@Entity
 public class AvailabilityDate {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(name = "availability_id")
 	private int availabilityId;
 
-	@NotNull(message = "Doctor cannot be null for an accurate availablity id")
-	@Min(value = 1)
-	@Column(name = "doctorId")
 	private int doctorId;
 
-	@NonNull
-	@Column(name = "availability_date")
 	private LocalDate date;
 
 	public AvailabilityDate() {
 		super();
-		
 	}
 
-	public AvailabilityDate(int availabilityId, int doctorId, LocalDate date) {
+	public AvailabilityDate(int availabilityId, int doctorId, String date) {
 		super();
 		this.availabilityId = availabilityId;
 		this.doctorId = doctorId;
-		this.date = date;
+		this.date = LocalDate.parse(date);
 	}
 
 	public int getAvailabilityId() {
@@ -61,13 +40,12 @@ public class AvailabilityDate {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDate(String date) {
+		this.date = LocalDate.parse(date);
 	}
 
 	@Override
 	public String toString() {
 		return "AvailabilityDates [availabilityId=" + availabilityId + ", doctor=" + doctorId + ", date=" + date + "]";
 	}
-
 }

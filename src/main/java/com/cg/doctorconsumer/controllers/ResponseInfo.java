@@ -1,59 +1,48 @@
-package com.cg.doctor.controllers;
+package com.cg.doctorconsumer.controllers;
 
-public class ErrorInfo {
+public class ResponseInfo {
 	private int httpCode;
 	private String httpStatus;
-	private String error;
+	private String message;
 	private String path;
-
-	public ErrorInfo() {
-
+	public ResponseInfo() {
+		
 	}
-
-	public ErrorInfo(int httpCode, String httpStatus, String error, String path) {
+	public ResponseInfo(int httpCode, String httpStatus, String message, String path) {
 		super();
 		this.httpCode = httpCode;
 		this.httpStatus = httpStatus;
-		this.error = error;
+		this.message = message;
 		this.path = path;
 	}
-
 	public int getHttpCode() {
 		return httpCode;
 	}
-
 	public void setHttpCode(int httpCode) {
 		this.httpCode = httpCode;
 	}
-
 	public String getHttpStatus() {
 		return httpStatus;
 	}
-
 	public void setHttpStatus(String httpStatus) {
 		this.httpStatus = httpStatus;
 	}
-
-	public String getError() {
-		return error;
+	public String getMessage() {
+		return message;
 	}
-
-	public void setError(String error) {
-		this.error = error;
+	public void setMessage(String message) {
+		this.message = message;
 	}
-
 	public String getPath() {
 		return path;
 	}
-
 	public void setPath(String path) {
 		this.path = path;
 	}
-
 	@Override
 	public String toString() {
-		return "ErrorInfo [httpCode=" + httpCode + ", httpStatus=" + httpStatus + ", error=" + error + ", path=" + path
-				+ "]";
+		return "ResponseInfo [httpCode=" + httpCode + ", httpStatus=" + httpStatus + ", message=" + message + ", path="
+				+ path + "]";
 	}
-
+	
 }
