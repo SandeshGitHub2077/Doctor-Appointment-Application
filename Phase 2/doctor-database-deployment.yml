@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctor-database-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: doctor-database
+  template:
+    metadata:
+      labels:
+        component: doctor-database
+    spec:
+      volumes:
+        - name: doctor-storage
+          persistentVolumeClaim:
+            claimName: doctor-database-persistent-volume-claim
+      containers:
+        - name: doctor-database
+          image: postgres
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: doctor-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: doctor-credentials
+                  key: PGPASSWORD
+            - name: POSTGRES_DB
+              value: Doctor
+            - name: POSTGRES_USER
+              value: postgres

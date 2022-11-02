@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-consumer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: patient-consumer
+  template:
+    metadata:
+      labels:
+        component: patient-consumer
+    spec:
+      containers:
+        - name: patient-consumer
+          image: nitheeshkumarkambala/patient-consumer
+          ports:
+            - containerPort: 8089

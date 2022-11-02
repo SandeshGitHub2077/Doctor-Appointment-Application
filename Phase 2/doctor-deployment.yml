@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doctor-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: doctor
+  template:
+    metadata:
+      labels:
+        component: doctor
+    spec:
+      containers:
+        - name: doctor
+          image: nitheeshkumarkambala/doctor
+          ports:
+            - containerPort: 8083
+          env:
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: doctor-database-cluster-ip-service
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABASE
+              value: Doctor
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: doctor-credentials
+                  key: PGPASSWORD

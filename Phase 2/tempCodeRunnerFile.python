@@ -1,0 +1,6 @@
+
+# plt.xlabel('hours')
+# plt.ylabel('risk-score')
+# plt.scatter(X_test,y_test,color='red',marker = '*') 
+# plt.plot(X_test,y_pred,color = 'grey') 
+# plt.plot(new,regressor.predict(new), color = 'red');

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-database-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: appointment-database
+  template:
+    metadata:
+      labels:
+        component: appointment-database
+    spec:
+      volumes:
+        - name: appointment-storage
+          persistentVolumeClaim:
+            claimName: appointment-database-persistent-volume-claim
+      containers:
+        - name: appointment-database
+          image: postgres
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: appointment-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-credentials
+                  key: PGPASSWORD
+            - name: POSTGRES_DB
+              value: Appointment
+            - name: POSTGRES_USER
+              value: postgres

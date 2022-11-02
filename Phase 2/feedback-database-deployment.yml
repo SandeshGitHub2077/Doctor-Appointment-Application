@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feedback-database-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: feedback-database
+  template:
+    metadata:
+      labels:
+        component: feedback-database
+    spec:
+      volumes:
+        - name: feedback-storage
+          persistentVolumeClaim:
+            claimName: feedback-database-persistent-volume-claim
+      containers:
+        - name: feedback-database
+          image: postgres
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: feedback-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: feedback-credentials
+                  key: PGPASSWORD
+            - name: POSTGRES_DB
+              value: Feedback
+            - name: POSTGRES_USER
+              value: postgres

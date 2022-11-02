@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: register-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: register
+  template:
+    metadata:
+      labels:
+        component: register
+    spec:
+      containers:
+        - name: register
+          image: nitheeshkumarkambala/register
+          ports:
+            - containerPort: 8090

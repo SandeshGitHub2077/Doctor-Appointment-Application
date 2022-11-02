@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feedback-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: feedback
+  template:
+    metadata:
+      labels:
+        component: feedback
+    spec:
+      containers:
+        - name: feedback
+          image: nitheeshkumarkambala/feedback
+          ports:
+            - containerPort: 8085
+          env:
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: feedback-database-cluster-ip-service
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABASE
+              value: Feedback
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: feedback-credentials
+                  key: PGPASSWORD

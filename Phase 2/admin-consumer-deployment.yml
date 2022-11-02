@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-consumer-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: admin-consumer
+  template:
+    metadata:
+      labels:
+        component: admin-consumer
+    spec:
+      containers:
+        - name: admin-consumer
+          image: nitheeshkumarkambala/admin-consumer
+          ports:
+            - containerPort: 8088

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-database-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: patient-database
+  template:
+    metadata:
+      labels:
+        component: patient-database
+    spec:
+      volumes:
+        - name: patient-storage
+          persistentVolumeClaim:
+            claimName: patient-database-persistent-volume-claim
+      containers:
+        - name: patient-database
+          image: postgres
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: patient-storage
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: patient-credentials
+                  key: PGPASSWORD
+            - name: POSTGRES_DB
+              value: Patient
+            - name: POSTGRES_USER
+              value: postgres

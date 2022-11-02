@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: appointment
+  template:
+    metadata:
+      labels:
+        component: appointment
+    spec:
+      containers:
+        - name: appointment
+          image: nitheeshkumarkambala/appointment
+          ports:
+            - containerPort: 8086
+          env:
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: appointment-database-cluster-ip-service
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABASE
+              value: Appointment
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: appointment-credentials
+                  key: PGPASSWORD

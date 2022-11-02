@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+    - host: bookmydoctor.com
+      http:
+        paths:
+          - path: /adminconsumer
+            pathType: Prefix
+            backend:
+              service:
+                name: admin-consumer-cluster-ip-service
+                port:
+                  number: 8088
+          - path: /doctorconsumer
+            pathType: Prefix
+            backend:
+              service:
+                name: doctor-consumer-cluster-ip-service
+                port:
+                  number: 8087
+          - path: /patientconsumer
+            pathType: Prefix
+            backend:
+              service:
+                name: patient-consumer-cluster-ip-service
+                port:
+                  number: 8089
+          - path: /register
+            pathType: Prefix
+            backend:
+              service:
+                name: register-cluster-ip-service
+                port:
+                  number: 8090

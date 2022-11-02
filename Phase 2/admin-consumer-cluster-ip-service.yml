@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-consumer-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: admin-consumer
+  ports:
+    - port: 8088
+      targetPort: 8088

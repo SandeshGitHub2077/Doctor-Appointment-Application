@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: patient-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: patient
+  template:
+    metadata:
+      labels:
+        component: patient
+    spec:
+      containers:
+        - name: patient
+          image: nitheeshkumarkambala/patient
+          ports:
+            - containerPort: 8082
+          env:
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: patient-database-cluster-ip-service
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABASE
+              value: Patient
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: patient-credentials
+                  key: PGPASSWORD

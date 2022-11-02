@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: register-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: register
+  ports:
+    - port: 8090
+      targetPort: 8090
