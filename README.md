@@ -1,1 +1,1 @@
-# BookMyDoctor
+# Doctor Appointment Application
